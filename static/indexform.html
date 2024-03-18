@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div>
+        <div>
+            <form action="/" method="POST" id="form">
+                <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input type="email" class="form-control" name="email">
+                </div><br>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" name="password">
+                </div><br>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQ1LNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script>
+        // The above scripts are for Working with Json Data - Express and BodyParser
+        $(document).ready(()=> {
+            $('#form').submit((e)=> {
+                e.preventDefault();
+                $.ajax({
+                    url : '/',
+                    type : 'post',
+                    contentType : 'application/json',
+                    data : JSON.stringify($('#form').serializeArray()),
+                    success : (Response) => {
+                        console.log('successfully got response');
+                        console.log(Response);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
